@@ -17,7 +17,7 @@ export function Header({ tasksCounter }: HeaderProps) {
 
       <View style={styles.tasks}>
         <Text style={styles.tasksCounter}>Você tem </Text>
-        <Text style={styles.tasksCounterBold}>{tasksCounter} {tasksCounter > 1 ? 'tarefas' : 'tarefa'}</Text>
+        <Text style={styles.tasksCounterBold}>{tasksCounter} {tasksCounter != 1 ? 'tarefas' : 'tarefa'}</Text>
       </View>
     </View>
   )

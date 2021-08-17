@@ -16,6 +16,7 @@ export function Home() {
     };
     const exists = tasks.find(task => task.title === newTask.title);
     exists ? '' : setTasks(() => [...tasks, newTask])
+    return newTask
   }
 
   function handleToggleTaskDone(id: number) {
