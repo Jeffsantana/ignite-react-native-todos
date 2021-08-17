@@ -9,14 +9,33 @@ export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   function handleAddTask(newTaskTitle: string) {
-    //TODO - add new task
+    const newTask: Task = {
+      id: new Date().getTime(),
+      title: newTaskTitle,
+      done: false
+    };
+    const exists = tasks.find(task => task.title === newTask.title);
+    exists ? '' : setTasks(() => [...tasks, newTask])
   }
 
   function handleToggleTaskDone(id: number) {
     //TODO - toggle task done if exists
+    tasks.map(task => {
+      if (task.id === id) {
+        task.done = !task.done;
+        console.log("🚀 ~ task", task);
+      }
+    })
+
   }
 
   function handleRemoveTask(id: number) {
+    const foundIndex = tasks.findIndex(task => task.id === id)
+    console.log("🚀 ~ tasks", tasks);
+    console.log("🚀 ~ foundIndex", foundIndex);
+    tasks.splice(foundIndex, 1)
+
+    setTasks(() => [...tasks])
     //TODO - remove task from state
   }
 
@@ -26,10 +45,10 @@ export function Home() {
 
       <TodoInput addTask={handleAddTask} />
 
-      <TasksList 
-        tasks={tasks} 
+      <TasksList
+        tasks={tasks}
         toggleTaskDone={handleToggleTaskDone}
-        removeTask={handleRemoveTask} 
+        removeTask={handleRemoveTask}
       />
     </View>
   )
